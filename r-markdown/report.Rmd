@@ -1,0 +1,18 @@
+---
+title: "Cookies Template"
+lang: "en"
+output:
+  html_document:
+    css: "style.css"
+---
+
+<div id = "cookie-banner"></div>
+
+## Cookies Code for R Markdown
+
+This folder contains all the necessary scripts needed to implement the NISRA cookies banner.
+
+All of this code has been included in the [latest version of the NISRA Rap Skeleton](https://github.com/NISRA-Tech-Lab/rap-skeleton)
+
+<script src = "cookies_script.js">
+</script>
