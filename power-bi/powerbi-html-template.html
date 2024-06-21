@@ -1,0 +1,141 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+
+<head> 
+    <title>REPORT_NAME Dashboard</title>
+
+	<link href="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head> 
+
+<body>
+
+	<div id = "cookie-banner" class = "cookies-infobar" role = "cookies-information">
+		<div class = "container">
+			<p><strong>Cookies on REPORT_NAME Dashboard</strong></p>
+			<p>This web page places small amounts of information known as cookies on your device. <a href = "https://www.nisra.gov.uk/cookies" class = "cookiesbarlink" target = "_blank" rel = "noopener noreferrer">Find out more about cookies</a>.</p>
+			<button id = "accept-cookies" class = "cookies-infobar_btn">Accept cookies</button>
+			<button id = "reject-cookies" class = "cookies-infobar_btn_reject">Reject cookies</button>
+		</div>
+	</div>
+
+	<!-- Replace iframe link below with your PowerBI embed link -->
+	<iframe title="placeholder" width="100%" height="1500" src="https://app.powerbi.com/view?r=eyJrIjoiZDc0NTE1MGYtZTI3Yy00OGNiLWExNzItOGIxMWE3MzQyNjcwIiwidCI6ImU3YTEzYWVhLTk0MzctNGRiNy1hMjJiLWNmYWE0Y2UzM2I2ZSJ9" frameborder="0" allowFullScreen="true" alt = "Placeholder Dashboard"></iframe>
+
+</body>
+
+<style>
+
+	#cookie-banner {
+		top: 0;
+		left: 0;
+		width: 100%;
+		background-color:#142062;
+		color:#FFF;
+		padding: 10px;
+		text-align: left;
+		display: none;
+	}
+	
+	.cookies-infobar_btn {
+		display: inline-block;
+		padding: 5px 10px;
+		background: #0f8243;
+		text-decoration: none;
+		color: #fff;
+		text-transform: none;
+		font-size: 1.2em;
+	}
+	
+	a.cookies-infobar_btn, a.cookies-infobar_btn_reject {
+		color: #fff !important;
+	}
+	
+	a.cookiesbarlink {
+		color: #2990FF;
+	}
+	
+	.cookies-infobar_btn_reject {
+		display: inline-block;
+		padding: 5px 10px;
+		background: #6d6e72;
+		text-decoration: none;
+		border-radius: 3px;
+		color: #fff;
+		text-transform: none;
+		font-size: 1.2em;
+	}
+	
+	.cookies-infobar {
+		color: #fff;
+		width: 100%;
+		left: 0;
+		right: 0;
+		top: 0;
+		padding: 10px;
+		text-align: left;
+	}
+	
+</style>
+
+<script>
+
+	let cookie_banner = document.getElementById('cookie-banner');
+
+	function load_google_analytics() {
+
+	(function(w, d, s, l, i){
+		w[l] = w[l]||[];
+		w[l].push({'gtm.start': new Date().getTime(),
+					event:'gtm.js'});
+		var f = d.getElementsByTagName(s)[0],
+			j = d.createElement(s),
+			dl = l !='dataLayer'?'&l='+l: '';
+		j.async = true;
+		j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+		f.parentNode.insertBefore(j,f);
+	})
+		(window,document,'script','dataLayer','GTM-KF6WGSG');
+
+	}
+
+	today = new Date();
+
+	document.getElementById('accept-cookies').onclick = function() {
+		localStorage.setItem('cookie_answered', true);
+		localStorage.setItem('cookie_date', today);
+		cookie_banner.style.display = 'none';
+		load_google_analytics();
+	}
+
+	document.getElementById('reject-cookies').onclick = function() {
+		localStorage.setItem('cookie_answered', true);
+		localStorage.setItem('cookie_date', today);
+		cookie_banner.style.display = 'none';
+	}
+
+	function show_cookie_banner() {
+		diff = (today - new Date(localStorage.cookie_date)) / 1000 / 60 / 60 / 24;
+
+		if (diff > 365) {
+		localStorage.removeItem("cookie_answered");
+		localStorage.removeItem("cookie_date");
+		}
+
+		if (!localStorage.cookie_answered) {
+		cookie_banner.style.display = 'block';
+		}
+	};
+
+	window.onload = show_cookie_banner();
+
+	window.setInterval(function() {
+		if (document.cookie == "") {
+			localStorage.removeItem("cookie_answered");
+			localStorage.removeItem("cookie_date");
+		}
+	} , 100)
+
+</script>
+
+</html>
