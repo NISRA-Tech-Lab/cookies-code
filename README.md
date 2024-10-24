@@ -6,9 +6,9 @@
 
 This folder contains three files:
 
-* [cookies_script.js](html-on-data-vis/cookies_script.js)
-* [example.hmtl](html-on-data-vis/example.html)
-* [style.css](html-on-data-vis/style.css)
+* [cookies_script.js](html-on-datavis/cookies_script.js)
+* [example.html](html-on-datavis/example.html)
+* [style.css](html-on-datavis/style.css)
 
 This code is only to be used on html outputs that will be published on the DataVis server. Visuals being published on the [NISRA Interactive Data Visualisation Hub](https://visual.nisra.gov.uk/) will automatically have that website's Cookie policy applied.
 
