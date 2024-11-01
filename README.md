@@ -43,7 +43,7 @@ _Recommended software: [R](https://www.r-project.org/) with [RStudio](https://po
 1. Copy and paste the content of `style.css` into your project's current CSS style sheet.
 1. Place the file `cookies_script.js` in the same folder as your main Rmd script. 
 1. In your main Rmd script, remove any existing code relating to Google Tag Manager and add the line `<div id = "cookie-banner"></div>` directly below the YAML declaration.
-1. At the bottom of your main Rmd script add the line `<script> src = "cookies_script.js"></script>`
+1. At the bottom of your main Rmd script add the line `<script> src = "cookies_script.js"</script>`
 
 __Please note that the full functionality of the Cookies Banner will not be visibile when viewing the output offline, but will be functional when it is hosted on the DataVis server.__
 
