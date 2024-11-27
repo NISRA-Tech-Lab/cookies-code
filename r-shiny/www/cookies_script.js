@@ -13,7 +13,7 @@ function loadGoogleAnalytics() {
       j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
       f.parentNode.insertBefore(j,f);
   })
-  (window,document,'script','dataLayer','GTM-KF6WGSG');
+  (window,document,'script','dataLayer','GTM-5JBDKRW');
 
 }
 
