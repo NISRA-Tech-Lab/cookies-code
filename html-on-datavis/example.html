@@ -1,30 +1,47 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <title>Cookies code for html</title>
+  <meta charset="UTF-8">
+  <title>Cookies code for HTML</title>
 
-    <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.4.1/dist/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.4.1/dist/jquery.min.js"></script>
 
-    <link rel ="stylesheet" href ="style.css">
+  <link
+    href="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
 
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+  <!--
+    Advanced Consent Mode v2 and Google Tag Manager.
+
+    Copy the contents of consent_head.html here so that consent defaults
+    are set before Google Tag Manager loads.
+  -->
 </head>
 
 <body>
 
-    <div id = "cookie-banner" role = "cookies-information"></div>
+  <div id="cookie-banner"></div>
 
-    <h1>Your web output</h1>
+  <h1>Your web output</h1>
 
-    <p>This folder contains the necessary scripts for any HTML page to be hosted on the NISRA datavis server</p>
+  <p>
+    This folder contains the necessary scripts for any HTML page to be
+    hosted on the NISRA DataVis server.
+  </p>
+
+  <!--
+    Cookie consent banner.
+
+    Copy the contents of cookie_banner.html here, near the end of the body.
+  -->
 
 </body>
-
-<script src = "cookies_script.js"></script>
-
-<script>
-    window.onload = showCookieBanner;
-</script>
 
 </html>
