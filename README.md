@@ -4,48 +4,92 @@
 
 [Link to folder](html-on-datavis)
 
-This folder contains three files:
+This folder contains four files:
 
-* [cookies_script.js](html-on-datavis/cookies_script.js)
+* [consent_head.html](html-on-datavis/consent_head.html)
+* [cookie_banner.html](html-on-datavis/cookie_banner.html)
 * [example.html](html-on-datavis/example.html)
 * [style.css](html-on-datavis/style.css)
 
-This code is only to be used on html outputs that will be published on the DataVis server. Visuals being published on the [NISRA Interactive Data Visualisation Hub](https://visual.nisra.gov.uk/) will automatically have that website's Cookie policy applied.
+This code is only to be used on HTML outputs that will be published on the
+DataVis server. Visuals being published on the
+[NISRA Interactive Data Visualisation Hub](https://visual.nisra.gov.uk/)
+will automatically have that website's cookie policy applied.
 
-To implement in a HTML project:
+To implement in an HTML project:
 
-_Recommended software: [Visual Studio Code](https://code.visualstudio.com/) (available free from ITAssist via Service Request) or [Notepad++](https://notepad-plus-plus.org/) (available free from ITAssist Store)_
+*Recommended software: [Visual Studio Code](https://code.visualstudio.com/)*
+*(available from ITAssist Store) or [Notepad++](https://notepad-plus-plus.org/)*
+*(available from ITAssist Store).*
 
-1. Copy and paste the content of `style.css` into your project's current CSS style sheet.
-1. Place the file `cookies_script.js` in the same folder as your main html script.
-1. In your main html script, add the line `<div id = "cookie-banner"></div>` directly below the opening `<body>` tag.
-1. After the closing `</body>` tag, add the line `<script src = "cookies_script.js"></script>`
-1. Below this add the line `<script>window.onload = showCookieBanner;</script>` (if your project already has a `window.onload` function then add a call to `showCookieBanner()` to its internal workings).
+1. Copy and paste the content of `style.css` into your project's current CSS
+style sheet.
+2. Copy the contents of `consent_head.html` into the `<head>` of your main HTML
+file. This must be placed before any other analytics or Google Tag Manager code
+so that the default consent state is set before Google Tag Manager loads.
+3. Add `<div id="cookie-banner"></div>` directly below the opening `<body>` tag.
+4. Copy the contents of `cookie_banner.html` into your main HTML file near the
+end of the `<body>`.
+5. Remove any existing Google Tag Manager or analytics code that would duplicate
+the implementation in `consent_head.html`.
 
-__Please note that the full functionality of the Cookies Banner will not be visibile when viewing the html output offline, but will be functional when it is hosted on the DataVis server.__
+The implementation uses Google Advanced Consent Mode v2. Analytics and
+advertising consent are denied by default, while Google Tag Manager is loaded in
+all consent states. If analytics cookies are accepted, `analytics_storage` is
+granted while advertising consent remains denied. The user's choice is stored
+for up to 365 days and reapplied on subsequent visits.
+
+**Please note that full analytics and Google Tag Manager functionality may not**
+**be visible when viewing the HTML output offline and should also be tested**
+**when hosted on the DataVis server.**
 
 ## Rmarkdown documents
 
 [Link to folder](r-markdown)
 
-This folder contains three files:
+This folder contains four files:
 
-* [cookies_script.js](r-markdown/cookies_script.js)
+* [consent_head.html](r-markdown/consent_head.html)
+* [cookie_banner.html](r-markdown/cookie_banner.html)
 * [report.Rmd](r-markdown/report.Rmd)
 * [style.css](r-markdown/style.css)
 
-This code has already been implemented in the [latest version of the NISRA RAP Skeleton](https://github.com/NISRA-Tech-Lab/rap-skeleton).
+This code has already been implemented in the latest version of the
+[NISRA RAP Skeleton](https://github.com/NISRA-Tech-Lab/rap-skeleton).
 
-To implement in an existing Rmd project:
+To implement in an existing R Markdown project:
 
-_Recommended software: [R](https://www.r-project.org/) with [RStudio](https://posit.co/download/rstudio-desktop/) (both available free from ITAssist Store)_
+*Recommended software: [R](https://www.r-project.org/) with*
+*[RStudio](https://posit.co/download/rstudio-desktop/) (both available free*
+*from the ITAssist Store).*
 
-1. Copy and paste the content of `style.css` into your project's current CSS style sheet.
-1. Place the file `cookies_script.js` in the same folder as your main Rmd script. 
-1. In your main Rmd script, remove any existing code relating to Google Tag Manager and add the line `<div id = "cookie-banner"></div>` directly below the YAML declaration.
-1. At the bottom of your main Rmd script add the line `<script src = "cookies_script.js"></script>`
+1. Copy and paste the content of `style.css` into your project's current CSS
+style sheet.
+2. Place `consent_head.html` and `cookie_banner.html` in the same folder as your
+main R Markdown script.
+3. Add the following to the `html_document` section of your YAML:
 
-__Please note that the full functionality of the Cookies Banner will not be visibile when viewing the output offline, but will be functional when it is hosted on the DataVis server.__
+```yaml
+includes:
+  in_header:
+    - "consent_head.html"
+  after_body:
+    - "cookie_banner.html"
+```
+
+4. Add `<div id="cookie-banner"></div>` directly below the YAML declaration.
+5. Remove any existing Google Tag Manager, analytics or cookie banner code that
+would duplicate the new implementation.
+
+The implementation uses Google Advanced Consent Mode v2. Analytics and
+advertising consent are denied by default, while Google Tag Manager is loaded in
+all consent states. If analytics cookies are accepted, `analytics_storage` is
+granted while advertising consent remains denied. The user's choice is stored
+for up to 365 days and reapplied on subsequent visits.
+
+**Please note that full analytics and Google Tag Manager functionality may not**
+**be visible when viewing the HTML output offline and should also be tested**
+**when hosted on the DataVis server.**
 
 ## RShiny apps
 
@@ -59,15 +103,23 @@ This folder contains three files:
 
 To implement in an existing Shiny App:
 
-_Recommended software: [R](https://www.r-project.org/) with [RStudio](https://posit.co/download/rstudio-desktop/) (both available free from ITAssist Store)_
+*Recommended software: [R](https://www.r-project.org/) with*
+*[RStudio](https://posit.co/download/rstudio-desktop/) (both available free*
+*from ITAssist Store)*
 
-1. If it doesn't exist, create a sub-folder named `www` in the same directory as your `app.R` script.
-1. Place both the `cookies_script.js` and `style.css` files in there. Alternatively, you may wish to append the contents of `style.css` to an existing Stylesheet.
-1. In your `app.R` script add the line `tags$link(rel = "stylesheet", type = "text/css", href = "style.css")` to the `ui`.
-1. Add the banner code from lines 8-16 of this `app.R` script to the `ui`.
-1. Directly below this, add the line `includeScript("www/cookies_script.js")`
+1. If it doesn't exist, create a sub-folder named `www` in the same directory
+as your `app.R` script.
+2. Place both the `cookies_script.js` and `style.css` files in there.
+Alternatively, you may wish to append the contents of `style.css` to an existing
+Stylesheet.
+3. In your `app.R` script add the line `tags$link(rel = "stylesheet", type =
+"text/css", href = "style.css")` to the `ui`.
+4. Add the banner code from lines 8-16 of this `app.R` script to the `ui`.
+5. Directly below this, add the line `includeScript("www/cookies_script.js")`
 
-__Please note that the full functionality of the Cookies Banner will not be visibile when using the App online, but will be functional when it is hosted on the RShiny server.__
+**Please note that the full functionality of the Cookies Banner will not be**
+**visibile when using the App online, but will be functional when it is hosted**
+**on the RShiny server.**
 
 ## Power BI dashboards
 
@@ -77,16 +129,28 @@ This folder contains one file:
 
 * [powerbi-html-template.html](power-bi/powerbi-html-template.html)
 
-This code is to be used to prepare the PowerBI dashboard for uploading to the DataVis server.
+This code is to be used to prepare the Power BI dashboard for uploading to the
+DataVis server.
 
 To implement:
 
-_Recommended software: [Visual Studio Code](https://code.visualstudio.com/) (available free from ITAssist via Service Request) or [Notepad++](https://notepad-plus-plus.org/) (available free from ITAssist Store)_
+*Recommended software: [Visual Studio Code](https://code.visualstudio.com/)*
+*(available from ITAssist Store) or [Notepad++](https://notepad-plus-plus.org/)*
+*(available from ITAssist Store)*
 
-1. Obtain the embed link for your report from the PowerBI web service.
-1. Remove the `placeholder` link on line 23 of the html script.
-1. Replace it with the embed link you obtained.
-1. Update lines 5 and 15 with the title of your Report.
-1. Save HTML file and upload to DataVis.
+1. Obtain the embed link for your report from the Power BI web service.
+2. In powerbi-html-template.html, find the Power BI <iframe> and replace the
+existing placeholder src URL with the embed link for your report.
+3. Replace each occurrence of REPORT_NAME with the title of your report.
+4. Save the HTML file and upload it to DataVis.
 
-__Please note that the full functionality of the Cookies Banner will not be visibile when viewing the output offline, but will be functional when it is hosted on the DataVis server.__
+The Power BI HTML template includes the NISRA Google Advanced Consent Mode v2
+implementation for dashboards hosted on the DataVis server. Analytics and
+advertising consent are denied by default, while Google Tag Manager is loaded in
+all consent states. If analytics cookies are accepted, `analytics_storage` is
+granted while advertising consent remains denied. The user's choice is stored
+for up to 365 days and reapplied on subsequent visits.
+
+**Please note that full analytics and Google Tag Manager functionality may not**
+**be visible when viewing the HTML output offline and should also be tested**
+**when hosted on the DataVis server.**

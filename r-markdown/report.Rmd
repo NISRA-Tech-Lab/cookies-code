@@ -4,15 +4,19 @@ lang: "en"
 output:
   html_document:
     css: "style.css"
+    includes:
+      in_header:
+        - "consent_head.html"
+      after_body:
+        - "cookie_banner.html"
 ---
 
-<div id = "cookie-banner"></div>
+<div id="cookie-banner"></div>
 
 ## Cookies Code for R Markdown
 
-This folder contains all the necessary scripts needed to implement the NISRA cookies banner.
+This folder contains all the necessary scripts needed to implement the NISRA
+cookies banner.
 
-All of this code has been included in the [latest version of the NISRA Rap Skeleton](https://github.com/NISRA-Tech-Lab/rap-skeleton)
-
-<script src = "cookies_script.js">
-</script>
+This code has been included in the latest version of the
+[NISRA RAP Skeleton](https://github.com/NISRA-Tech-Lab/rap-skeleton).
